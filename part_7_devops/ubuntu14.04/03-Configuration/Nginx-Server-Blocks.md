@@ -1,39 +1,17 @@
-title: Ubuntu 14.04 Nginx配置入门
-date: 2016-03-12 17:31:13
-tags: ubuntu
----
+# 如何在Ubuntu 14.04上设置Nginx Server Blocks
 
-[Set up Automatic Virtual Hosts with Nginx and Apache](http://www.sitepoint.com/set-automatic-virtual-hosts-nginx-apache/)
+## 简介
+使用Nginx Web Server时， `server blocks`（类似于Apache中的 virtual hosts）可以用于封装配置详细内容以及在一台物理服务器上运行多个web服务器。
+When using the Nginx web server, server blocks (similar to the virtual hosts in Apache) can be used to encapsulate configuration details and host more than one domain off of a single server.
 
-## 如何在Ubuntu 14.04安装Nginx
-`apt-get update`
-`apt-get install nginx`
-会自动启动
-
-## nginx进程管理
-1. 停止Web Server
-`sudo service nginx stop`
-
-2. 启动Web Server
-`sudo service nginx start`
-
-3. 停止后再启动Web Server
-`sudo service nginx restart`
-
-
-4. 设置确保当服务器重启时Web Server会自动启动
-`sudo update-rc.d nginx defaults`
-
-
-## 管理Web内容
+## 条件
+确保已经安装了Nginx
 作为案例，我们会在Nginx服务器里设置两个域
 我们会使用example.com和test.com
-
-
 要保证域名要解析到指定的IP
 
 
-## 指定一个根目录
+## 第一步：指定一个根目录
 我假设将目录设置在~/www下，也就是/home/hexcola/www
 然后在这个目录下创建不同的项目
 `sudo mkdir -p /home/hexcola/www/example.com/html`
@@ -45,10 +23,10 @@ sudo chown -R $USER:$USER /var/www/example.com/html
 sudo chown -R $USER:$USER /var/www/test.com/html
 ```
 
-## 创建示例页面
+## 第二步：创建示例页面
 在/example.com/html和test.com/html目录下创建 index.html文件
 
-## 为我们的两个网站创建Server Block文件
+## 第三步：为我们的两个网站创建Server Block文件
 现在我们有两个文件要对外展示，我们需要Server block文件来告诉Nginx怎么做
 
 默认情况下，Nginx包含一个Server Block文件 `default`可以作为一个模板文件，我们直接复制，然后做些修改。
@@ -56,6 +34,23 @@ sudo chown -R $USER:$USER /var/www/test.com/html
 `sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/example.com`
 
 编辑该文件：
+
+```json
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server ipv6only=on;
+
+    root /usr/share/nginx/html;
+    index index.html index.htm;
+
+    server_name localhost;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+```
+
 1. 关于listen
 我们仅仅需要一个`default_server`，它往往用于Only one of our server blocks can have the default_server specification. This specifies which block should server a request if the server_name requested does not match any of the available server blocks.
 
@@ -66,7 +61,8 @@ sudo chown -R $USER:$USER /var/www/test.com/html
 `server_name example.com www.example.com`
 
 看起来如下：
-```
+
+```json
 server {
     listen 80 default_server;
     listen [::]:80 default_server ipv6only=on;
@@ -91,7 +87,7 @@ listen [::]:80;
 
 其他照旧
 
-## 启用Server Block文件，重启Nginx
+## 第四步：启用Server Block文件，重启Nginx
 1. 要启用Server Block文件，我们可以通过创建Symbolic Link文件到Nginx在启动的时候回读取的`sites-enabled`目录，
 ```
 sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/
@@ -110,5 +106,5 @@ sudo ln -s /etc/nginx/sites-available/test.com /etc/nginx/sites-enabled/
 `sudo service nginx configtest` 来测试我们的配置文件是否有问题。
 
 ## 参考文件
-* [How To Install Nginx on Ubuntu 14.04 LTS](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-14-04-lts)
 * [How To Set Up Nginx Server Blocks (Virtual Hosts) on Ubuntu 14.04 LTS](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-14-04-lts)
+* [Set up Automatic Virtual Hosts with Nginx and Apache](http://www.sitepoint.com/set-automatic-virtual-hosts-nginx-apache/)

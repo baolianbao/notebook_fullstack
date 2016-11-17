@@ -1,7 +1,4 @@
-title: 在Ubuntu 14.04 Server上搭建VPN服务器
-date: 2016-03-31 17:11:13
-tags: ubuntu
----
+# 在Ubuntu 14.04 Server上搭建VPN服务器
 
 ## 购买VPS
 选择搬瓦工，便宜！

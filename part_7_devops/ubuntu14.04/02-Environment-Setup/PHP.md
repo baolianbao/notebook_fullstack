@@ -1,45 +1,4 @@
-title: 在Ubuntu 14.04 Server上搭建LNMP环境
-date: 2016-04-06 09:54:13
-tags: ubuntu
----
-
-
-要求：有常规用户可以为sudo权限的用户。
-
-## 安装Nginx Web服务器
-为了能够将网页显示给我们的网站访问者，我们需要雇佣Nginx，一个现代、高效的Web服务器
-```bash
-sudo apt-get update
-sudo apt-get install nginx
-```
-
-在Ubuntu 14.04中，Nginx在安装的时候就会启动运行。
-
-可以通过浏览器来访问服务器的域名或者公网IP地址来查看Nginx服务器是否已经运行。
-
-如果你的服务器没有域名指定，且你不知道服务器的公网地址，可以使用如下的命令来获取外面IP
-```bash
-ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//'
-```
-
-## 安装MySQL
-在安装了web服务器之后，我们需要安装用于为我们的网站存储和管理数据的数据库管理系统MySQL。
-```bash
-sudo apt-get install mysql-server
-```
-在安装的过程中会要求我们提供超级管理员的密码，尽管MySQL数据库软件已经安装好了，但是我们的配置还没有完全完成。
-
-首先，我们需要告诉MySQL生成其所需用来存储数据库和信息的的目录结构。可以简单的通过如下的命令来完成：
-```bash
-sudo mysql_install_db
-```
-接下来，你需要运行写简单的安全脚本用来提示你修改一些不安全的默认配置。输入如下的命令
-```bash
-sudo mysql_secure_installation
-```
-同样需要输入在安装的时候输入的MySQL超级管理员密码。 如果没有设置密码，输入`N`然后敲回车，回提示你移除一些测试用户和数据库，一直敲回车就可以了，它会帮我们移除不安全的默认配置的。
-
-脚本运行结束后，MySQL就算是安装完成了。
+# PHP 
 
 ## 安装PHP 环境
 现在我们已经安装了Nginx来展示网页，MySQL来存储和管理我们的数据，但我们仍旧需要可以连接它们两端并生成动态内容的部分。在这里我们使用PHP。
@@ -175,6 +134,3 @@ sudo vi /usr/share/nginx/html/info.php
 
 
 [虚拟主机管理系统](http://baike.baidu.com/view/822862.htm)
-
-
-

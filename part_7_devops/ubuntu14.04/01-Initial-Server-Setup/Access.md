@@ -1,7 +1,4 @@
-title: 如何访问Ubuntu 14.04 Server
-date: 2016-03-12 17:31:13
-tags: ubuntu
----
+# 如何访问Ubuntu 14.04 Server
 
 
 创建了新的服务器之后，我们需要能够访问和操作。
