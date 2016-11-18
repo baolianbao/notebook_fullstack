@@ -144,7 +144,19 @@ location /app2 {
     }
 ```
 
-配置完成之后，保存退出，然后通过
+配置完成之后，保存退出。
+## 第四步：启用Server Block文件，重启Nginx
+1. 要启用Server Block文件，我们可以通过创建Symbolic Link文件到Nginx在启动的时候回读取的`sites-enabled`目录，
+```
+sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/test.com /etc/nginx/sites-enabled/
+```
+要移除，我们可以直接删除sites-enabled文件夹内的文件
+`sudo rm /etc/nginx/sites-enabled/default`
+
+
+2. 同时，取消`/etc/nginx/nginx.conf`文件中的`server_name_hash_bucket_size 64`的注释
+
 `sudo service nginx configtest` 来测试我们的配置文件是否有问题。
 
  现在就可以重启我们的服务器了
