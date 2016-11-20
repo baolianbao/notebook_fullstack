@@ -1,9 +1,4 @@
----
-title: D3.js 05 Real time
-date: 2016-08-22 14:29:18
-tags: [d3.js, data visualization]
-categories: data visualization
----
+# D3.js实时
 
 D3.js + [Socket.io](http://socket.io/)
 

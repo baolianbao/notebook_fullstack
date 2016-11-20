@@ -1,9 +1,4 @@
----
-title: D3.js Introduction
-date: 2016-08-22 14:21:48
-tags: [d3.js, data visualization]
-categories: data visualization
----
+# D3.js 介绍
 
 ## 简介
 学习如何使用D3 JS库来创建漂亮的，即时的、可交互的，基于浏览器的数据可视化。
@@ -42,32 +37,9 @@ https://www.youtube.com/playlist?list=PLI_sHchSmdCDH0ooOKSWSA1uzr1vCqgHh
 D3的作者Mike Bostock
 早期版本：Protovis
 
-关于JSlint 怎么和Sublime结合？
-
 在中国有哪些即时数据？
 
-
-客户端
-Chrome浏览器
-使用的浏览器开发环境：Chrome，Mac使用Alt+Command + I进入工具
-想知道更多：https://developer.chrome.com/devtools/docs/authoring-development-workflow
-我们主要集中于Elements选项卡
-
-服务端
-
-- 使用Node.js做服务端
-
-          需要安装http-server模块，默认会启动8080端口
-               $npm install -g http-server
-               $ http-server
-
-- 使用Python 2.x做服务端
-
-               $ python -m SimpleHTTPServer 8000
-
-- 使用Python 3.x做服务端
-
-其他
+## 其他
 TopoJSON 优化 geographic数据
 $npm install -g topojson
 

@@ -1,19 +1,16 @@
----
-title: D3.js for data visualization
-date: 2016-08-11 18:06:27
-tags: [d3.js, data visualization]
-categories: data visualization
----
+#  D3.js for data visualization
 
+```html
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
-        <script src=“d3.min.js"></script>
+        <script src="d3.min.js"></script>
         <script>
             function draw(data) {
                 "use strict";
-                // badass visualization code goes here }
+                // badass visualization code goes here 
+            }
         </script>
     </head>
 
@@ -23,6 +20,8 @@ categories: data visualization
         </script>
     </body>
 </html>
+```
+
 其中的要点包括：
 
 - 导入d3库

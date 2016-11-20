@@ -1,11 +1,6 @@
----
-title: SVG Essentials
-date: 2016-08-22 14:24:17
-tags: [d3.js, data visualization, svg]
-categories: data visualization
----
+# SVG核心内容
 
-系统论
+## 系统论
 
 - 目标：用来表示可缩放的矢量图形
 - 组成元素：
@@ -24,10 +19,10 @@ http://www.w3schools.com/svg/default.asp
 - SVG的坐标系统
 - SVG中的主要元素（line，rect，circle， polygon和path）
 
-容器
+## 容器
 元素定位：二维坐标系统，D3中没有z，关于深度，取决于图形绘制的先后顺序
 
-元素
+## 元素
 常见元素的模式
 
 - 标签指定是什么元素

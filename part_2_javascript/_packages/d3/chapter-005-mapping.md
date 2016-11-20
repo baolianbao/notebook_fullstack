@@ -1,9 +1,4 @@
----
-title: D3.js 04 Mapping
-date: 2016-08-22 14:29:14
-tags: [d3.js, data visualization]
-categories: data visualization
----
+# D3.js Mapping
 
 创建地图
 任务：
